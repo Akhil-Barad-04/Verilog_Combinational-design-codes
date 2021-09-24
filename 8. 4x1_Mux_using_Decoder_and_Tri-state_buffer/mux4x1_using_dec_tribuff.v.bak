@@ -1,0 +1,15 @@
+module mux4x1_using_dec_tribuff(Y,I,S);
+    output Y;
+    input [3:0]I;
+    input [1:0]S;
+    wire [3:0]y;
+    wire [3:0]w;
+    decoder_2x4_df D(y[3:0],S[1:0]);
+
+    bufif1 G1(w[0],I[0],y[0]);
+    bufif1 G2(w[1],I[1],y[1]);
+    bufif1 G3(w[2],I[2],y[2]);
+    bufif1 G4(w[3],I[3],y[3]);
+    wor  (w[3],w[2],w[1],w[0]);
+
+endmodule
